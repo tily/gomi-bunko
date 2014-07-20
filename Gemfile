@@ -40,7 +40,7 @@ gem 'mongoid'
 gem 'bson_ext'
 gem 'bluecloth'
 gem 'omniauth'
-gem 'omniauth-twitter'
+gem 'omniauth-twitter', '~> 1.0.0'
 gem 'json'
 gem 'faker-japanese', :require => 'faker/japanese'
 
