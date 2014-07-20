@@ -76,6 +76,7 @@ GEM
       omniauth (~> 1.0)
     omniauth-twitter (0.0.9)
       omniauth-oauth (~> 1.0)
+    pg (0.17.1)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -137,6 +138,7 @@ DEPENDENCIES
   mysql2
   omniauth
   omniauth-twitter
+  pg
   rails (= 3.2.3)
   sass-rails (~> 3.2.3)
   therubyracer

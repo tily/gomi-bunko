@@ -45,3 +45,7 @@ gem 'json'
 gem 'faker-japanese', :require => 'faker/japanese'
 
 gem 'mysql2'
+
+group :production do
+  gem 'pg'
+end
