@@ -43,3 +43,5 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'json'
 gem 'faker-japanese', :require => 'faker/japanese'
+
+gem 'sqlite3'
