@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title><%= "#{@book.author.name} #{@book.title}" %></title>
+    <style>
+      body { margin: 8% 10%; }
+      div, h1, h2 { line-height: 150%; }
+      ruby { line-height: 100%; }
+      rt { line-height: 50%; }
+      span.notes {font-size: smaller}
+      img.gaiji { width: 1em; height: 1em; align: top; }
+      div.bibliographical_information { margin-top: 150px; }
+    </style>
+  </head>
+  <body>
+    <p><%= link_to '校正', edit_book_path(@book.author.name, @book.title) %> | <a href="#" onclick="var script = document.createElement('script');script.src='https://gist.github.com/raw/875989/2c1ac495ab6c4919cf2aca3b1925778700c3ab84/tate.user.js';document.body.appendChild(script);">縦書き</a></p>
+    
+    <h1 class="title"><%= @book.title %></h1>
+    <h2 class="author"><%= @book.author.name %></h2>
+    
+    <div class="main_text">
+      <br />
+      <br />
+      <br />
+      <%= BlueCloth.new(@book.body, :escape_html => true).to_html.html_safe %>
+    </div>
+    
+    <div class="bibliographical_information">
+      <hr />
+      底本：不明<br />
+      初出：不明<br />
+      入力：<%= @book.creator || '不明' %><br />
+      校正：<%= @book.updater || '不明' %><br />
+      <%= @book.created_at.strftime('%Y年%m月%d日') %>作成<br />
+      <%= @book.updated_at.strftime('%Y年%m月%d日') %>更新<br />
+      <%= title %>作成ファイル：<br />
+      このファイルは、インターネットの図書館、<%= link_to "#{title} (http://#{request.host}/)", "/" %> で作られました。
+      入力、校正、制作にあたったのは、ボランティアの皆さんです。
+    </div>
+</body>
+</html>

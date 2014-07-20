@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  name_yomi: MyString
+  birth_date: 2012-06-23
+  death_date: 2012-06-23
+  links: 
+
+two:
+  name: MyString
+  name_yomi: MyString
+  birth_date: 2012-06-23
+  death_date: 2012-06-23
+  links: 

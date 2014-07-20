@@ -1,0 +1,25 @@
+<% content_for(:title) do %>
+公開中　作品一覧：<%= params[:sound] %>
+<% end %>
+
+<h2><%= yield(:title) %></h2>
+
+<table id="book">
+  <tr>
+    <th>作品名<br />副題</th>
+    <th>文字遣い種別</th>
+    <th>著者名</th>
+    <th>著者基本名</th>
+    <th>翻訳者名等</th>
+  </tr>
+
+<% @books.each do |book| %>
+  <tr>
+    <td><%= link_to book.title, book_path(book.author.name, book.title) %></td>
+    <td>新字新仮名</td>
+    <td><%= book.author.name %></td>
+    <td><%= book.author.name_yomi %></td>
+    <td>ー</td>
+  </tr>
+<% end %>
+</table>

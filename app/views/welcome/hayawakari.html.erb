@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title><%= title %>早わかり</title>
+    <style>
+      body { margin: 8% 10%; }
+      div, h1, h2 { line-height: 150%; }
+      ruby { line-height: 100%; }
+      rt { line-height: 50%; }
+      span.notes {font-size: smaller}
+      img.gaiji { width: 1em; height: 1em; align: top; }
+      div.bibliographical_information { margin-top: 150px; }
+    </style>
+  </head>
+  <body>
+    <h1 class="title"><%= title %>早わかり</h1>
+    
+    <div class="main_text">
+      <%=
+        BlueCloth.new(<<-EOB).to_html.html_safe
+
+* 編集できる青空文庫、パブリックドメイン
+* 転載やめて、不適切なものは適当に消したりします
+* このサイトに登場する作家・作品は全てフィクションであり、実在の人物・書籍とは一切関係がありません
+	EOB
+      %>
+    </div>
+</body>
+</html>

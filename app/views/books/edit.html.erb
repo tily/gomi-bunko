@@ -1,0 +1,9 @@
+<% content_for(:title) do %>
+作品校正
+<% end %>
+
+<h2><%= yield(:title) %></h2>
+
+<%= render 'form' %>
+
+<%= link_to '戻る', book_path(params[:author_name], params[:book_title]) %>

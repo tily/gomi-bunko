@@ -1,0 +1,25 @@
+<% 
+  require 'json'
+  file = '/home/dotcloud/environment.json'
+  env = File.exists?(file) ? JSON.parse(File.read(file)) : {}
+%>
+development:
+  host: localhost
+  database: abendsonne_development
+
+test:
+  host: localhost
+  database: abendsonne_test
+
+# set these environment variables on your prod server
+production:
+  host: <%= env['DOTCLOUD_DATA_MONGODB_HOST'] %>
+  port: <%= env['DOTCLOUD_DATA_MONGODB_PORT'] %>
+  username: <%= env['DOTCLOUD_DATA_MONGODB_LOGIN'] %>
+  password: <%= env['DOTCLOUD_DATA_MONGODB_PASSWORD'] %>
+  database: abendsonne_production
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019

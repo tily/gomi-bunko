@@ -1,0 +1,56 @@
+<% content_for(:title) do %>
+作家別作品リスト：<%= @author.name %>
+<% end %>
+
+<h2><%= yield(:title) %></h2>
+
+<table id="author">
+  <tr>
+    <td class="item">作家名：</td>
+    <td><font size="+2"><%= @author.name %></font></td>
+  </tr>
+  <tr>
+    <td class="item">作家名読み：</td>
+    <td><%= @author.name_yomi %></td>
+  </tr>
+  <!--
+  <tr>
+    <td class="item">生年：</td>
+    <td><%= @author.birth_date %></td>
+  </tr>
+  <tr>
+    <td class="item">没年：</td>
+    <td><%= @author.death_date %></td>
+  </tr>
+  -->
+  <tr>
+    <td class="item">人物について：</td>
+    <td>
+      <a href="http://ja.wikipedia.org/" target="_blank">
+        <%= image_tag "wikipedia.jpg", :align => 'middle' %>
+      </a>
+      「<a href="http://ja.wikipedia.org/wiki/<%= URI.encode(@author.name) %>" target="_blank"><%= @author.name %></a>」
+    </td>
+  </tr>
+</table>
+
+<p class="menu">
+［
+  <%= link_to '作家編集', edit_author_path(params[:author_name]) %>
+  |
+  <%= link_to '作品登録', new_book_path(params[:author_name]) %>
+］
+</p>
+
+<h3><a name="sakuhin_list_1">公開中の作品</a></h3>
+
+<ol>
+  <% @author.books.each do |book| %>
+    <li><%= link_to book.title, book_path(@author.name, book.title) %></li>
+  <% end %>
+</ol>
+
+<h3>関連サイト</h3>
+<ol>
+  <li><a href="<%= @author.link %>"><%= @author.link %></a></li>
+</ol>

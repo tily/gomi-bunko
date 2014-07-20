@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body <%= ["class=", yield(:body_class)].join if content_for?(:body_class) %>>
+  <div class="wrapper">
+    <% if params[:controller] != 'welcome' %>
+      <nav class="header">
+        ●<%= link_to 'メイン', '/' %>
+	<% if params[:controller] == 'authors' && params[:action] == 'index' %>
+          ●作家リスト：
+	  <% Sound::CONSONANTS.each do |consonant| %>
+	    <% if consonant == params[:consonant] %>
+	      <strong>[<%= consonant %>]</strong>
+	    <% else %>
+              <%= link_to "[#{consonant}]", authors_path(consonant) %>
+	    <% end %>
+	  <% end %>
+	<% else %>
+          ●<%= link_to '作家リスト', authors_path('あ') %>
+	<% end %>
+        ●<%= link_to '作品リスト', books_path('あ') %>
+      </nav>
+    <% end %>
+    <%= yield %>
+    <hr />
+    <% if params[:controller] != 'welcome' %>
+      <nav class="footer">
+        ●<%= link_to 'メイン', '/' %>
+        ●<%= link_to '作家リスト', authors_path('あ') %>
+        ●<%= link_to '作品リスト', books_path('あ') %>
+      </nav>
+    <% end %>
+  </div>
+</body>
+</html>

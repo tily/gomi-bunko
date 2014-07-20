@@ -1,0 +1,62 @@
+<% @action = %w(new create).include?(params[:action]) ? :create : :update %>
+<% @method = %w(new create).include?(params[:action]) ? :post : :put %>
+<%= form_for(@author, :method => @method, :url => {:action => @action}) do |f| %>
+  <% if @author.errors.any? %>
+    <div id="error_explanation">
+      <p>エラー：</p>
+      <ul>
+        <% @author.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table id="main">
+    <tr>
+      <td class="item">
+        名前
+      </td>
+      <td class="content">
+        <%= %w(new create).include?(params[:action]) ? f.text_field(:name) : @author.name %><br />
+      </td>
+    </tr>
+    <tr>
+      <td class="item">
+        名前(読み)
+      </td>
+      <td class="content">
+        <%= %w(new create).include?(params[:action]) ? f.text_field(:name_yomi) : @author.name_yomi %><br />
+      </td>
+    </tr>
+    <!--
+    <tr>
+      <td class="item">
+        生年
+      </td>
+      <td class="content">
+        <%= f.date_select :birth_date, :start_year => Date.new(1800).year, :end_year => Date.today.year %>
+      </td>
+    </tr>
+    <tr>
+      <td class="item">
+        没年
+      </td>
+      <td class="content">
+        <%= f.date_select :death_date, :start_year => Date.new(1900).year, :end_year => Date.today.year %>
+      </td>
+    </tr>
+    -->
+    <tr>
+      <td class="item">
+        リンク
+      </td>
+      <td class="content">
+        <%= f.text_field :link %>
+      </td>
+    </tr>
+  </table>
+
+</table>
+<p><%= f.submit(:value => params[:action] == 'new' ? '入力' : '校正') %></p>
+<% end %>

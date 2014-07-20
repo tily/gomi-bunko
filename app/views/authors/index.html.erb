@@ -1,0 +1,22 @@
+<% content_for(:title) do %>
+公開中　作家リスト：<%= params[:consonant] %>行
+<% end %>
+
+<h2><%= yield(:title) %></h2>
+
+<p class="menu">
+  <% @sounds.each do |sound| %>
+    <%= link_to("[#{sound}]", "##{sound}") %>
+  <% end %>
+</p>
+
+<% @sounds.each do |sound| %>
+  <h3><%= sound %></h3>
+  <ol>
+    <% @authors.each do |author| %>
+      <% if author.sound_index == sound %>
+        <li><%= link_to author.name, author_path(author.name) %></li>
+      <% end %>
+    <% end %>
+  </ol>
+<% end %>

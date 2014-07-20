@@ -1,0 +1,9 @@
+<% content_for(:title) do %>
+作家登録
+<% end %>
+
+<h2><%= yield(:title) %></h2>
+
+<%= render 'form' %>
+
+<p><%= link_to '戻る', '/' %></p>

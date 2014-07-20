@@ -1,0 +1,8 @@
+<% content_for(:title) do %>
+作品登録
+<% end %>
+
+<h2><%= yield(:title) %></h2>
+
+<%= render 'form' %>
+<%= link_to 'Back', author_path(params[:author_name]) %>

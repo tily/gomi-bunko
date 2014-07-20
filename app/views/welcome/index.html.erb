@@ -1,0 +1,86 @@
+<% content_for(:title) do %>
+<%= title %>
+<% end %>
+<% content_for(:body_class) do %>
+welcome
+<% end %>
+
+<div id="login">
+  <% if session[:twitter] %>
+    こんにちは、<%= session[:twitter] %> さん
+    <%= link_to 'ログアウト', '/logout' %>
+  <% else %>
+    <%= link_to 'ログイン', '/auth/twitter' %>
+  <% end %>
+</div>
+
+<h1>gomi</h1>
+
+<p>
+  <strong>インターネットの電子図書館、<%= title %>へようこそ。</strong><br />
+  <p>初めての方はまず「<%= link_to [title, "早わかり"].join, '/hayawakari' %>」をご覧ください。
+</p>
+
+<h2 class="welcome">メインエリア</h2>
+
+<table id="main" cellpadding="4" cellspacing="3">
+  <tr>
+    <td class="item">
+      <%= link_to [title, "早わかり"].join, '/hayawakari' %>
+    </td>
+    <td class="content">
+      <%= title %>の使い方と約束事を紹介しています。
+    </td>
+  </tr>
+  <tr>
+    <td class="item">
+      <%= link_to '作家登録', new_author_path %>
+    </td>
+    <td class="content">
+      まずは作家を登録しましょう。作家に対して作品を登録できます。
+    </td>
+  </tr>
+  <tr>
+    <td class="item">
+      公開中　作家別：
+    </td>
+    <td class="content">
+      <% [%w(あ か さ た な), %w(は ま や ら わ)].each do |consonants| %>
+        <% consonants.each do |consonant| %>
+          <%= link_to [consonant, '行'].join, authors_path(consonant) %><%= '　' %>
+        <% end %>
+        <br />
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="item">
+      公開中　作品別：
+    </td>
+    <td class="content">
+      <table>
+        <%
+           [
+             %w(あ か さ た な は ま や ら わ),
+             %w(い き し ち に ひ み い り い),
+             %w(う く す つ ぬ ふ む ゆ る を),
+             %w(え け せ て ね へ め え れ え),
+             %w(お こ そ と の ほ も よ ろ ん)
+           ].each do |sounds|
+        %>
+          <tr>
+            <% sounds.each_with_index do |sound, i| %>
+              <td>
+                <% unless i != 0 && %w(あ い う え お).include?(sound) %>
+                  <%= link_to sound, books_path(sound) %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<p>このページのお問い合わせは、@tily までお願いいたします。</p>

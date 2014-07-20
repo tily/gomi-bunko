@@ -1,0 +1,9 @@
+<% content_for(:title) do %>
+作家編集
+<% end %>
+
+<h2><%= yield(:title) %></h2>
+
+<%= render 'form' %>
+
+<p><%= link_to '戻る', author_path(params[:author_name]) %></p>

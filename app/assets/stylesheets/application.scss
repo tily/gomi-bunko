@@ -1,0 +1,145 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+$black      : #000000;
+$light_grey : #ffffff;
+$white      : #ffffff;
+$light_blue : #ffffff;
+$dark_blue  : #000000;
+$beige      : #ffffff;
+$brown      : brown;
+$red        : red;
+
+body {
+  font-family: helvetica, geneva, arial, sans-serif;
+  background-color: $light_blue;
+}
+body.welcome {
+  background-color: $white;
+}
+div.wrapper {
+  margin: auto;
+  width: 80%;
+}
+div#login {
+  text-align: right;
+}
+h1 {
+  margin-top: 5px;
+  padding: 1.0em;
+  color: black;
+  background-color: yellow;
+}
+h2 {
+  font-size: 1.5em;
+  text-align: center;
+  background-color: $beige;
+  color: $black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+h2.welcome {
+  background-color: $light_grey;
+  border-top: 1px solid $dark_blue;
+  border-bottom: 1px solid $dark_blue;
+}
+h3 {
+  font-size: 1.5em;
+  text-align: center;
+  background-color: $light_grey;
+  color: $black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 1px solid $black;
+  border-bottom: 1px solid $black;
+}
+table {
+  width: 100%;
+}
+table#navi {
+  padding: 10px;
+  background-color: yellow;
+  color: black;
+}
+table#navi, table#main {
+  td.link {
+    text-align: right;
+    vertical-align: top;
+  }
+  td.item {
+    text-align: right;
+    width: 30%;
+    border: 1px solid $light_grey;
+    background-color: $beige;
+  }
+  td.content {
+    width: 70%;
+    border: 1px solid $light_grey;
+    background-color: $light_blue;
+
+    table {
+      width: 100%;
+    }
+  }
+  th.item {
+    background-color: $black;
+    color: $white;
+  }
+}
+table#book {
+  background-color: $white;
+  border: 1px solid $black;
+  th {
+    background-color: $beige;
+  }
+  td, th {
+    border: 1px solid $black;
+  }
+}
+table#author td.item {
+  width: 40%;
+  font-weight: bold;
+  color: $brown;
+}
+p strong {
+  font-size: 1.5em;
+}
+nav.header {
+  text-align: right;
+  strong {
+    color: $red;
+  }
+}
+nav.footer {
+  text-align: left;
+}
+p {
+  text-align: center;
+}
+p.menu {
+  text-align: right;
+}
+textarea {
+  width: 100%;
+}
+div#error_explanation {
+  p {
+    text-align: left;
+  }
+}
+button.fancies {
+  color: #ffffff; 
+  background-color: #000000;
+}

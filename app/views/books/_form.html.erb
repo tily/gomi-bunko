@@ -1,0 +1,52 @@
+<% @action = %w(new create).include?(params[:action]) ? :create : :update %>
+<% @method = %w(new create).include?(params[:action]) ? :post : :put %>
+<%= form_for(@book, :method => @method, :url => {:action => @action}, :author_name => params[:author_name]) do |f| %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <p>エラー：<p>
+
+      <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    タイトル：<%= %w(new create).include?(params[:action]) ? f.text_field(:title) : @book.title %><br />
+    読み(ひらがな)：<%= %w(new create).include?(params[:action]) ? f.text_field(:title_yomi) : @book.title_yomi %>
+  </div>
+  <div class="field">
+    <button class="fancies" id="name">人名</button>
+    <button class="fancies" id="mcguffin">キーアイテム</button>
+  </div>
+  <div class="field">
+    <%= f.text_area :body %>
+  </div>
+  <div class="field">
+    markdown 記法が利用できます
+  </div>
+  <div class="actions">
+    <%= f.submit(:value => params[:action] == 'new' ? '入力' : '校正') %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('button#name').click(function() {
+    $.getJSON('/fancies/name.json', function(name) {
+      var formatted = [
+        name.last_name, name.first_name,
+	'(', name.last_name_yomi, name.first_name_yomi, ')'
+      ].join('');
+      $('textarea').append(' ' + formatted);
+    });
+    return false;
+  });
+  $('button#mcguffin').click(function() {
+    $.getJSON('/fancies/mcguffin.json', function(mcguffin) {
+      $('textarea').append(' ' + mcguffin.item);
+    });
+    return false;
+  });
+</script>
